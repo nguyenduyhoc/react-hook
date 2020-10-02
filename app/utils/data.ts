@@ -30,4 +30,4 @@ const tempData =
 
 ]
 
-export {tempData]
+export {tempData}
