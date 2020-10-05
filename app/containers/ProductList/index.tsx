@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { tempData } from 'utils/data';
 
 //Khởi tạo 1 kiểu dữ liệu mới, là kiểu dữ liệu của props sẽ được truyền vào
-interface ProductListProps {}
+interface ProductListProps { }
 
 export const ProductList: React.FC<ProductListProps> = props => {
   const [listProduct, setListProduct] = useState([] as any[]);
@@ -14,6 +14,22 @@ export const ProductList: React.FC<ProductListProps> = props => {
     //Giờ t sẽ set data giả từ file data.ts vào state
     setListProduct(tempData);
   }, [tempData]);
+  function getProduct() {
+    fetch('https://mapi.sendo.vn/mob/product')
+      .then(function (res) {
+        return res.json
+      })
+      .then(function () {
+        tempData.forEach(product => {
+
+        }
+
+        )
+      })
+  }
+  useEffect(() => {
+    setListProduct([getProduct])
+  }, [getProduct]);
 
   return (
     <div>
@@ -24,3 +40,4 @@ export const ProductList: React.FC<ProductListProps> = props => {
     </div>
   );
 };
+
