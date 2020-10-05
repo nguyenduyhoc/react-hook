@@ -1,34 +1,25 @@
+import Axios from 'axios';
 import { ProductItem } from 'components/ProductItem';
 import React, { useEffect, useState } from 'react';
 import { tempData } from 'utils/data';
 
 //Khởi tạo 1 kiểu dữ liệu mới, là kiểu dữ liệu của props sẽ được truyền vào
-interface ProductListProps { }
+interface ProductListProps {}
 
 export const ProductList: React.FC<ProductListProps> = props => {
   const [listProduct, setListProduct] = useState([] as any[]);
 
-  //Đọc docs sẽ biết useEffect dùng để chạy những funct trước khi render UI
-  //Thường nó sẽ dùng để gọi function lấy data từ API rồi xử lý các bước cơ bản với data
-  useEffect(() => {
-    //Giờ t sẽ set data giả từ file data.ts vào state
-    setListProduct(tempData);
-  }, [tempData]);
-  function getProduct() {
-    fetch('https://mapi.sendo.vn/mob/product')
-      .then(function (res) {
-        return res.json
-      })
-      .then(function () {
-        tempData.forEach(product => {
+  //Khai báo function trong hook
+  const getProduct = async() => {
+    // async function dùng để chạy các function bất đồng bộ
+    //dùng await sẽ lấy đc data từ api mà hk cần .then()
+    let response = await Axios.get('https://mapi.sendo.vn/mob/product')
+    console.log(response)
+    return response
+  };
 
-        }
-
-        )
-      })
-  }
   useEffect(() => {
-    setListProduct([getProduct])
+    let product = getProduct();
   }, [getProduct]);
 
   return (
@@ -40,4 +31,3 @@ export const ProductList: React.FC<ProductListProps> = props => {
     </div>
   );
 };
-
