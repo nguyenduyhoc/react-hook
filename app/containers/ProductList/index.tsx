@@ -18,6 +18,7 @@ export const ProductList: React.FC<ProductListProps> = props => {
     return response
   };
 
+
   useEffect(() => {
     let product = getProduct();
   }, [getProduct]);
@@ -31,3 +32,5 @@ export const ProductList: React.FC<ProductListProps> = props => {
     </div>
   );
 };
+
+
